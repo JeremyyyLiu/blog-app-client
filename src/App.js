@@ -1,19 +1,15 @@
 import "./App.css";
+import Header from "./components/Header";
+import Post from "./components/Post";
 
 function App() {
   return (
     <main>
       {/* Header section */}
-      <header>
-        <a href="" className="logo">
-          BlogApp
-        </a>
+      <Header />
 
-        <nav>
-          <a href="">Login</a>
-          <a href="">Register</a>
-        </nav>
-      </header>
+      {/* Post section */}
+      <Post />
     </main>
   );
 }
