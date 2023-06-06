@@ -1,16 +1,16 @@
 import "./App.css";
-import Header from "./components/Header";
-import Post from "./components/Post";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <main>
-      {/* Header section */}
-      <Header />
-
-      {/* Post section */}
-      <Post />
-    </main>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path={"/login"} element={<div>login page</div>} />
+      </Route>
+    </Routes>
   );
 }
 

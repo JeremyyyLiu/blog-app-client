@@ -1,3 +1,4 @@
+/* Universal styles */
 body {
   color: #222;
 }
@@ -18,6 +19,7 @@ header {
   margin-bottom: 50px;
 }
 
+/* Header styles */
 header a {
   text-decoration: none;
   color: inherit;
@@ -32,6 +34,7 @@ header nav {
   gap: 15px;
 }
 
+/* Post styles */
 div.post {
   margin-bottom: 30px;
 }
@@ -50,7 +53,7 @@ div.post p.info {
   gap: 10px;
 }
 
-div.post p.info a.author {
+div.post p.author {
   color: #333;
 }
 
