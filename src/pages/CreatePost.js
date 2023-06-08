@@ -1,26 +1,30 @@
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
+  // Click to create post
   async function handleCreatePost(event) {
-    const data = new FormData();
-    data.set("title", title);
-    data.set("body", body);
-
     event.preventDefault();
 
-    const response = await fetch("http://locahost:8080/post", {
+    const response = await fetch("http://localhost:8080/post", {
       method: "POST",
-      body: data,
+      body: JSON.stringify({ title, body }),
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
     });
+
+    if (response.status === 200) {
+      setRedirect(true);
+    }
   }
 
   return (
     <form onSubmit={handleCreatePost}>
+      {/* Input title */}
       <input
         type="title"
         placeholder={"Title"}
@@ -28,10 +32,12 @@ const CreatePost = () => {
         onChange={(event) => setTitle(event.target.value)}
       />
 
-      <ReactQuill
+      {/* Input body */}
+      <input
+        type="textarea"
         placeholder={"Write something down..."}
         value={body}
-        onChange={(newValue) => setBody(newValue.target.value)}
+        onChange={(event) => setBody(event.target.value)}
       />
 
       <button style={{ marginTop: "5px" }}>Create Post</button>
