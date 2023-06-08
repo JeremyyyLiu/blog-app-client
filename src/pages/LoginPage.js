@@ -18,9 +18,11 @@ export default function LoginPage() {
       credentials: "include",
     });
 
-    response.status === 200
-      ? setRedirect(true)
-      : alert("Invalid username or password. Please try again.");
+    if (response.status === 200) {
+      setRedirect(true);
+    } else {
+      alert("Invalid username or password. Please try again.");
+    }
   }
 
   // Redirect to the homepage if servers checks credentials ok
