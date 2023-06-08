@@ -8,6 +8,7 @@ export default function RegisterPage() {
   async function handleRegister(event) {
     event.preventDefault();
 
+    // request '/register'
     const response = await fetch(`http://localhost:8080/register`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -39,7 +40,7 @@ export default function RegisterPage() {
       />
 
       {/* Submit button */}
-      <button>Login</button>
+      <button>Register</button>
     </form>
   );
 }
