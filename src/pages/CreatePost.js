@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
+import { Navigate } from "react-router-dom";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -22,6 +23,10 @@ const CreatePost = () => {
     }
   }
 
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
+
   return (
     <form onSubmit={handleCreatePost}>
       {/* Input title */}
@@ -34,7 +39,7 @@ const CreatePost = () => {
 
       {/* Input body */}
       <input
-        type="textarea"
+        type="text"
         placeholder={"Write something down..."}
         value={body}
         onChange={(event) => setBody(event.target.value)}
