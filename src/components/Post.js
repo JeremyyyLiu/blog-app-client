@@ -1,21 +1,17 @@
 import "../App.css";
 import React from "react";
+import { formatISO9075 } from "date-fns";
 
-const Post = () => {
+const Post = ({ title, body, createdAt }) => {
   return (
     <div className="post">
       <div className="text">
-        <h2>M2 Ultra - The most powerful Apple Silicon chip yet</h2>
+        <h2>{title}</h2>
 
         <p className="author">Dawid Paszko</p>
+        <time>{formatISO9075(new Date(createdAt))}</time>
 
-        <p className="summary">
-          At WWDC 2023 today Apple unveiled the M2 Ultra, its most powerful
-          Apple Silicon chip yet. With the M2 Pro and Max launching earlier this
-          year, and rumors pointing to Apple finally bringing the M2 generation
-          to the Mac Studio and Mac Pro, the launch of the Ultra wasn’t a major
-          surprise.
-        </p>
+        <p className="summary">{body}</p>
       </div>
     </div>
   );
