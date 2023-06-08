@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const CreatePost = () => {
-  return (
-    <form>
-      <input type="title" placeholder={"Title"} />
-      <input type="summary" placeholder={"Summary"} />
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
 
-      <ReactQuill />
+  async function handleCreatePost(event) {
+    const data = new FormData();
+    data.set("title", title);
+    data.set("body", body);
+
+    event.preventDefault();
+
+    const response = await fetch("http://locahost:8080/post", {
+      method: "POST",
+      body: data,
+    });
+  }
+
+  return (
+    <form onSubmit={handleCreatePost}>
+      <input
+        type="title"
+        placeholder={"Title"}
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+      />
+
+      <ReactQuill
+        placeholder={"Write something down..."}
+        value={body}
+        onChange={(newValue) => setBody(newValue.target.value)}
+      />
+
+      <button style={{ marginTop: "5px" }}>Create Post</button>
     </form>
   );
 };
